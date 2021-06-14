@@ -1,0 +1,73 @@
+CREATE TABLE Course
+(
+  course_code VARCHAR(20) NOT NULL,
+  course_name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (course_code)
+);
+
+CREATE TABLE Section
+(
+  sec_id INT(10) NOT NULL,
+  semester VARCHAR(20) NOT NULL,
+  course_code VARCHAR(20) NOT NULL,
+  location VARCHAR(20) NOT NULL,
+  PRIMARY KEY (sec_id),
+  FOREIGN KEY (course_code) REFERENCES Course(course_code)
+);
+
+
+CREATE TABLE Course_Prerequisite
+(
+ course_code VARCHAR(20) NOT NULL,
+ Prerequisite_code VARCHAR(20) NOT NULL,  
+ PRIMARY KEY (Prerequisite_code, course_code),
+ FOREIGN KEY (course_code) REFERENCES Course(course_code)
+);
+
+CREATE TABLE Student
+(
+  Student_id INT(10) NOT NULL,
+  s_name VARCHAR(20) NOT NULL,
+  DOB date NOT NULL,
+  Sex Char(1),
+  PRIMARY KEY (Student_id)
+  );
+
+CREATE TABLE Invoice
+(
+  Invoice_Id INT(10) NOT NULL,
+  Student_id INT(10) NOT NULL,
+  Amount DECIMAL(16,2) NOT NULL,
+  Recieved_date date NULL,
+  Payment_Status tinyint(1) NULL,
+  PRIMARY KEY (Invoice_ID),
+  FOREIGN KEY (Student_id) REFERENCES Student(Student_id)
+);
+
+
+CREATE TABLE enrolled
+(
+  Student_id INT(10) NOT NULL,  
+  grade float(5) NOT NULL,
+  attendance numeric(10) NOT NULL,
+  sec_id INT(10) NOT NULL,
+  PRIMARY KEY (Student_id, sec_id),
+  FOREIGN KEY (Student_id) REFERENCES Student(Student_id),
+  FOREIGN KEY (sec_id) REFERENCES Section(sec_id)
+);
+
+CREATE TABLE Student_prev_certificate
+(
+  prev_certificate VARCHAR(20) NOT NULL,
+  Student_id INT(10) NOT NULL,
+  PRIMARY KEY (prev_certificate, Student_id),
+  FOREIGN KEY (Student_id) REFERENCES Student(Student_id)
+);
+
+insert into course values ('COSC 4120','Database Application');
+insert into course_prerequisite values ('COSC 4120','COSC 4110');
+insert into section values (404,'Summer 2021','COSC 4120','Bangkok, Thailand');
+insert into student values (4176827,'Aman Pathak','2000-06-23','M');
+insert into invoice values (4176827,$5000,'Paid on June 1');
+insert into enrolled values (4176827,3.9,100,404);
+insert into student_prev_certificate values ('Python Algorithms',4176827);
