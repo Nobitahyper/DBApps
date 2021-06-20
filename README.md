@@ -8,5 +8,5 @@ Installation
 
 There is a student.txt file that contains the database script to create tables and insert values into tables. For a new user, please go to mysql terminal
 and create a database with this code 'create database student;' and then copy and paste the whole script into it. This step will help install the database. 
-The file dbapps3.php is a php program to retrieve single row of data from database using prepare statement. From line 8-11, edit the name of your server, database name, username, password, etc.
+The file dbapps3.php is a php program to retrieve single row of data from database using prepare statement. From line 8-11, edit the name of your server, database name, username, password, etc. This file runs a query to select all the information about a student from student table and display it based on the id entered in the form.
 according to your setup otherwise the program won't work. Also if you download this file and rename it then please edit line 3 and insert new name of the file. Then to run the program simply open your local server first and then in the browser go to url "localhost/filename.php"  
