@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <body>
 
-
+<?php include  "navbar.php" ?>
 <style>
   h1{
   background-color: #ffec00; 
