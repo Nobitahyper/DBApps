@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <body>
+<?php include  "navbar.php" ?>
 <form action="insert.php" method="POST">
 <input type=number name="studentid" placeholder="Student ID (7 digits)" required/><br/>
 <input type="text" name="sname" placeholder="Name" required/><br/>
