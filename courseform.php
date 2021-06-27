@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <body>
+<?php include  "navbar.php" ?>
 <form action="insertcourse.php" method="POST">
 <input type="text" name="ccode" placeholder="COSC 1..9" required/><br/>
 <input type="text" name="cname" placeholder="Course Name" required/><br/>
