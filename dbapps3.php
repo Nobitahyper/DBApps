@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<body>
+<body> 
+<?php include  "navbar.php" ?>
 <form action="dbapps3.php" method="POST">
 <input type="text" name="id" placeholder="Student ID" />
 <input type="submit" name="search" class="btn" value="SEARCH BY ID" />
