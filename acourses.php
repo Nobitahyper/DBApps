@@ -18,6 +18,7 @@
 
 
 <body>
+<?php include  "navbar.php" ?>
 <?php
 $servername = "localhost";
 $username = "root";
