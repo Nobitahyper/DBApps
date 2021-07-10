@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<body>
+
+<?php include  "navbar.php";
+ $servername = "localhost";
+ $username = "root";
+ $password = "aman";
+ $dbname = "student";
+ 
+ $conn = new mysqli($servername, $username, $password, $dbname);
+ if ($conn->connect_error){
+     die("conncetion failed: " . $conn->connnect_error);
+ }
+ echo "Connected Successfully <hr> <br>";
+ ?>
+
+<div><h2><br>Check your grade</h2></div>
+
+<form action="" method="POST">
+<input type="text" name="id" placeholder="Enter your student id" />
+<input type="submit" name="search" class="btn" value="Search" />
+</form>
+
+<?php
+
+if(isset($_POST['search'])){
+// select all data
+$sql = "SELECT * FROM enrolled WHERE student_id = ?";
+
+// prepare statement
+$result = mysqli_prepare($conn, $sql);
+
+mysqli_stmt_bind_param($result, 'i', $id);
+
+$id = $_POST['id'];
+
+// Bind Result set in variables
+mysqli_stmt_bind_result($result, $id, $grade, $attendance, $sec_id);
+
+
+// Execute Prepared statement
+mysqli_stmt_execute($result);
+
+// Store Result
+mysqli_stmt_store_result($result);
+
+// Fetch all data
+if(mysqli_stmt_num_rows($result) > 0){
+    while(mysqli_stmt_fetch($result)){
+        echo "Student ID: " . $id . "<br/>Grade: " . $grade . "<br/>Attendance: " . $attendance .  "<br>Section: " . $sec_id . "<br><br>";
+        }
+}else {
+    echo "This ID hasn't been enrolled in any section yet.";
+}
+
+// Free Result
+mysqli_stmt_free_result($result);
+
+// close prepared statement
+mysqli_stmt_close($result);
+}
+
+mysqli_close($conn);
+ ?>
+
+ </body>
+ </html>
